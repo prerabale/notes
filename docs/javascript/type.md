@@ -74,7 +74,7 @@ n.a = 15;
 
 因此当我改变n时，m也发生了变化。这就是引用类型的特性。
 
-![](/Users/prerabale/workspace/GitHub/notes/images/reference-type.png)
+![](../../images/reference-type.png)
 
 ## 类型判断
 
