@@ -8,7 +8,7 @@
 
 在 `require` 的实现中有 4 个重要的变量，`module`、`exports`、`require`、`global`，`module.exports`为当前模块对外输出的接口。
 
-![](/Users/prerabale/workspace/GitHub/notes/images/require.png)
+![](../../images/require.png)
 
 ## 用法
 
