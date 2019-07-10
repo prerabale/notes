@@ -4,12 +4,9 @@
 
 - [模块系统](./docs/node-js/module.md)
 
-- [Event Loop](./docs/node-js/event-loop.md)
+- [事件循环](./docs/node-js/event-loop.md)
 
-  >  同步还是异步
-
-- 事件循环
-- Stream
+- [Stream](./docs/node-js/stream.md)
 - child_process/cluster
 - 垃圾回收、内存泄漏
 
@@ -25,9 +22,8 @@
 - proimse 实现
 - async 实现
 - 原型链
-- 继承
-- 防抖
-- 节流
+- [继承](./docs/javascript/inherit.md)
+- 防抖/节流
 - ajax
 - [模块化规范](./docs/javascript/modular-specification.md)
 
@@ -46,11 +42,11 @@
 
 ## 浏览器
 
-* 防抖
-* 节流
-* 事件
+* 防抖/节流
+* 事件机制
 * 页面生成的过程；渲染过程
-* 强缓存、协商缓存
+* 缓存机制 (强缓存、协商缓存)
+* DNS解析顺序
 * Web Worker
 * 安全
 * iframe
