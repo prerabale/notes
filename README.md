@@ -31,6 +31,7 @@
 - 防抖
 - 节流
 - ajax
+- [模块化规范](./docs/javascript/modular-specification.md)
 
 ## html
 

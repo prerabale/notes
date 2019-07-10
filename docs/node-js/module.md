@@ -93,13 +93,13 @@
 
 ```js
 [
-	'/path/to/prject/node_modules',
+  '/path/to/prject/node_modules',
   '/path/to/node_modules',
   '/path/node_modules',
   '/node_modules',
   '/path/to/homeDir/.node_modules',
   '/path/to/homeDir/.node_libraries',
-	'/lib/node'
+  '/lib/node'
 ]
 ```
 
@@ -210,11 +210,64 @@ require.extensions['.json'] = function(module, filename) {
 
 
 
-## 为什么是 CommonJs
+## 为什么是同步加载？
 
-## 如何实现一个异步的 require
+`Node.js` 以事件驱动模式获取高效的性能，为什么加载模块的时候不采用异步加载的方式，这样不是可以提高加载的性能吗？诚然，异步加载的方式能够提高加载的效率，但是除了加载的效率之外还有一些因素不得不考虑。
+
+1. 同步加载的开销
+
+   和浏览器中通过网络加载资源不同，Node.js 是加载本地文件，稳定且高效，同步的开销是能预估且可以接受的
+
+2. 异步加载会提升代码的编写难度
+
+   引用、导出模块的代码都将置于回调之中，当模块的加载有顺序要求时，就必须层层嵌套回调，又将引入回调地狱的问题，而且模块的缓存控制也增加了难度。
+
+3. 实在需要异步的情况下，可以通过导出函数的方式，来完成，例如：
+
+   ```js
+   // 想要到处的模块
+   var fs = require('fs');
+   module.exports = {
+     initialize: function (callback) {
+       fs.readFile('/etc/passwd', function (err, data) {
+         callback(err, data);
+       });
+     }
+   };
+   
+   // 然后可以这样引用
+   require('./passwords').initialize(function (err, passwords) {
+     // ...
+   });
+   ```
+
+   
 
 ## 热更新
+
+### 简介
+
+这里要和`热重启`区分开来，`热重启`是指在项目依赖发生变更的时候重启整个项目，例如：[nodemon](https://www.npmjs.com/package/nodemon)，而热更新是指在项目启动之后，项目依赖变更之后，局部的更新此文件。
+
+### 实现
+
+热更新核心要做的事情只有两件
+
+1. 知道文件何时发生变更
+
+   > 通过原生的API `fs.watch` 监听目标文件
+
+2. 更新此文件的内容
+
+   > 删除 `require.cache` 中的缓存，重新加载文件内容
+
+查看[代码示例](../../examples/hot-reload/index.js)
+
+### 问题
+
+* 更新的文件可能被多个文件引用，需要每个文件都更新代码
+
+* 有些文件只应该被执行一次，例如：数据库连接等
 
 ## 参考
 
