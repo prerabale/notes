@@ -174,7 +174,7 @@ person2.colors.toString() // red,blue
 
 - 原型链的判断上是合理的
 
-  > person.\_\_proto\_\_ === Person.prototype
+  > person.\_\_proto\_\_ === Person.prototype  
   > person.\_\_proto\_\_.\_\_proto\_\_ === Animal.prototype
 
 * 子类在创建父类的时候，能够创建单独的父类副本，变量不会共享
