@@ -64,7 +64,7 @@ console.log(person.colors.toString()) // red,blue
 console.log(person.age) // 16
 ```
 
-因为 `Person` 创建的时候会自动添加上 `prototype` 属性（不可枚举），且将 `prototype.constructor` 设置为 `Person` ，所以在将 `Person` 的原型指向 `Animal` 实例的时候需要手动将 `constructor` 设置为 `Person`
+ `Person` 创建的时候会自动添加上 `prototype` 属性（不可枚举），且将 `prototype.constructor` 设置为 `Person` ，在将 `Person` 的原型指向 `Animal` 实例的时候会丢失，我们需要手动将 `constructor` 改回来。
 
 #### 优势
 
@@ -72,7 +72,7 @@ console.log(person.age) // 16
 
 * 原型链的判断上是合理的
 
-  > person.\_\_proto\_\_ === Person.prototype
+  > person.\_\_proto\_\_ === Person.prototype  
   > person.\_\_proto\_\_.\_\_proto\_\_ === Animal.prototype
 
 #### 问题
